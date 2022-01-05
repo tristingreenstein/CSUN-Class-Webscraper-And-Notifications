@@ -23,7 +23,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 outerloop = 0
 innerloop = 0
 failed_count = 0
-LOOP_SPEED = 10 # Speed in Seconds for rechecking class search
+LOOP_SPEED = 100 # Speed in Seconds for rechecking class search
 
 # Using Chrome to access web
 ###WARNING, MUST HAVE GOOGLE CHROME INSTALLED TO USE THIS SOFTWARE###
@@ -53,7 +53,7 @@ def start_program():
          
             id_box.send_keys('comp') # Selects Comp Sci Major
             id_box.send_keys(Keys.ENTER)
-            time.sleep(3)
+            time.sleep(2)
           
             driver.find_element_by_id("NR_SSS_SOC_NWRK_BASIC_SEARCH_PB").click()
             time.sleep(3)
@@ -66,14 +66,14 @@ def start_program():
 
             id_box = driver.find_element_by_id("NR_SSS_SOC_NWRK_SUBJECT")
             id_box.click()
-            time.sleep(3)
+            time.sleep(2)
             id_box.send_keys('comp') # Selects Comp Sci Major
             id_box.send_keys(Keys.ENTER)
-            time.sleep(3)
+            time.sleep(2)
             driver.find_element_by_id("NR_SSS_SOC_NWRK_CHECK_BOX").click()
-            time.sleep(3)
+            time.sleep(2)
             driver.find_element_by_id("NR_SSS_SOC_NWRK_BASIC_SEARCH_PB").click()
-            time.sleep(3)
+            time.sleep(2)
             spot_existingClass()# Search If Spot Opens in Existing Class
 
             driver.refresh()
@@ -326,11 +326,14 @@ def spot_existingClass():
             #     print(driver.find_element_by_id("NR_SSS_SOC_NWRK_DESCR100_2$21").text
                     #     + " NO CHANGE IN SECTION: " +
                             #     driver.find_element_by_id("NR_SSS_SOC_NSEC_CLASS_SECTION$0").text)
+        try:
             if(driver.find_element_by_id("SOC_DETAIL$16")):
                 print("NEW SPOT OPEN")
+        except:
+            print()
     except:
         print("failed " + current_time)
-        failed_count +=1
+        failed_count += 1
         driver.refresh()
         time.sleep(10)
         i = 2
