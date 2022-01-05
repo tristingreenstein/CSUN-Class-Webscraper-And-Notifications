@@ -6,7 +6,6 @@ from selenium.webdriver.common.by import By
 import time
 from playsound import playsound
 x = 0
-
 # Using Chrome to access web
 s = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=s)
