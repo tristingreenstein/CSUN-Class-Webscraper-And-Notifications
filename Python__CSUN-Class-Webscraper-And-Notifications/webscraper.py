@@ -10,6 +10,9 @@ from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 
+from dotenv import load_dotenv
+import os
+
 import time
 import warnings
 from playsound import playsound
@@ -20,7 +23,9 @@ from tkinter import simpledialog
 import requests
 from discord import Webhook, RequestsWebhookAdapter
 
-webhook = Webhook.from_url("https://discord.com/api/webhooks/928187579034124298/DcAaiskKHiYw6IVjtctRrgry3sv3py1WxiKeAQTd6tCRZXgKwzdJb3O6QOvzVifHrNfk", adapter=RequestsWebhookAdapter())
+load_dotenv()
+WEBHOOKKEY = os.getenv('WEBHOOKKEY')
+webhook = Webhook.from_url(WEBHOOKKEY, adapter=RequestsWebhookAdapter())
 
 ROOT = tk.Tk()
 ROOT.withdraw()
