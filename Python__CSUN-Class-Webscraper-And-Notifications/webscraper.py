@@ -9,10 +9,16 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+
 import time
 import warnings
 from playsound import playsound
 
+import tkinter as tk
+from tkinter import simpledialog
+
+ROOT = tk.Tk()
+ROOT.withdraw()
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
 outerloop = 0
 innerloop = 0
@@ -32,18 +38,19 @@ t = time.localtime()
 current_time = time.strftime("%H:%M:%S", t)
 time.sleep(0)
 def start_program():
-    val = input("Enter your value: ") # TESTING TO ADD DYNAMIC CLASS SELECTION
-    print(val)
+    USER_INP = simpledialog.askstring(title="CLASS SELECTION",prompt="INPUT CLASS SELECTION:") # TESTING TO ADD DYNAMIC CLASS SELECTION
+    print(USER_INP)
     while outerloop < 1:   
-       innerloop = 0
-       no_crash = 1 # Number of Loops Without Crashing
-       while innerloop < 1: ###Main Menu Search Screen###
+        print("Outerloop Reached:")
+        innerloop = 0
+        no_crash = 1 # Number of Loops Without Crashing
+        while innerloop < 1: ###Main Menu Search Screen###
             if(failed_count > 2):
                 restart_browser()
             id_box = driver.find_element_by_id("NR_SSS_SOC_NWRK_SUBJECT")
             id_box.click()
          
-            id_box.send_keys('comp')
+            id_box.send_keys('comp') # Selects Comp Sci Major
             id_box.send_keys(Keys.ENTER)
             time.sleep(3)
           
@@ -58,8 +65,10 @@ def start_program():
             print(no_crash)
             time.sleep(10)
             no_crash+=1
+    return
 
 def alarm():
+    print("Alarm Triggered: ")
     playsound('audio.mp3')
     outerloop = 2 # Stops while loop.
     innerloop = 2 # Stops while loop.
@@ -82,7 +91,7 @@ def spot_newSection():
         failed_count +=1
         driver.refresh()
         time.sleep(60)
-        i = 2
+        innerloop = 2
 def spot_existingClass():
     try: # Search If Spot Opens in Existing Class
              driver.find_element_by_id("SOC_DETAIL$21").click()
@@ -103,5 +112,6 @@ def restart_browser():
 def main():
     print("Begin Program: ")
     start_program()
+    print("End Program Reached")
 if __name__ == "__main__":
     main()
