@@ -329,6 +329,15 @@ def spot_existingClass():
         try:
             if(driver.find_element_by_id("SOC_DETAIL$16")):
                 print("NEW SPOT OPEN")
+                arr = ['100','108','111B','111BL','122','122L','222','282','300','380L','485','491L','560','565','696C','698C']
+                for w in range(len(arr)):
+                    timer = 0
+                    for className in arr:
+                        if className in driver.find_element_by_id(f'NR_SSS_SOC_NWRK_DESCR100_2${w}').text:
+                            break
+                        if timer == len(arr) - 1:
+                            print(driver.find_element_by_id("NR_SSS_SOC_NWRK_DESCR100_2$0").text)
+                        timer += 1
         except:
             print()
     except:
