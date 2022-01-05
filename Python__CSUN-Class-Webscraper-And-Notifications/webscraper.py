@@ -23,6 +23,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 outerloop = 0
 innerloop = 0
 failed_count = 0
+LOOP_SPEED = 10 # Speed in Seconds for rechecking class search
 
 # Using Chrome to access web
 ###WARNING, MUST HAVE GOOGLE CHROME INSTALLED TO USE THIS SOFTWARE###
@@ -59,11 +60,25 @@ def start_program():
 
             ###Loaded All COMP Classes Screen###
             spot_newSection()# Search If New Section Opens
-            # spot_existingClass()# Search If Spot Opens in Existing Class
+            driver.refresh()
+            time.sleep(3)
+
+
+            id_box = driver.find_element_by_id("NR_SSS_SOC_NWRK_SUBJECT")
+            id_box.click()
+            time.sleep(3)
+            id_box.send_keys('comp') # Selects Comp Sci Major
+            id_box.send_keys(Keys.ENTER)
+            time.sleep(3)
+            driver.find_element_by_id("NR_SSS_SOC_NWRK_CHECK_BOX").click()
+            time.sleep(3)
+            driver.find_element_by_id("NR_SSS_SOC_NWRK_BASIC_SEARCH_PB").click()
+            time.sleep(3)
+            spot_existingClass()# Search If Spot Opens in Existing Class
 
             driver.refresh()
             print(no_crash)
-            time.sleep(10)
+            time.sleep(LOOP_SPEED)
             no_crash+=1
     return
 
@@ -300,16 +315,19 @@ def specific_class(num:int):
             print(driver.find_element_by_id("NR_SSS_SOC_NWRK_DESCR100_2$39").text + " NEW SECTION")
 def spot_existingClass():
     try: # Search If Spot Opens in Existing Class
-            driver.find_element_by_id("SOC_DETAIL$21").click()
-            time.sleep(1)
-            if not '0' in driver.find_element_by_xpath('//*[@id="NR_SSS_SOC_NWRK_AVAILABLE_SEATS$0"]').text:
-                alarm()
-                print(current_time)
-            elif '0' in driver.find_element_by_xpath('//*[@id="NR_SSS_SOC_NWRK_AVAILABLE_SEATS$0"]').text:
-                print(driver.find_element_by_id("NR_SSS_SOC_NWRK_DESCR100_2$21").text + " NO CHANGE IN SECTION: " + driver.find_element_by_id("NR_SSS_SOC_NSEC_CLASS_SECTION$0").text)
-                
-
-
+            #driver.find_element_by_id("SOC_DETAIL$21").click()
+            # time.sleep(1)
+                    # if not '0' in
+                            # driver.find_element_by_xpath('//*[@id="NR_SSS_SOC_NWRK_AVAILABLE_SEATS$0"]').text:
+            #     alarm()
+                    #     print(current_time)
+            # elif '0' in
+                    # driver.find_element_by_xpath('//*[@id="NR_SSS_SOC_NWRK_AVAILABLE_SEATS$0"]').text:
+            #     print(driver.find_element_by_id("NR_SSS_SOC_NWRK_DESCR100_2$21").text
+                    #     + " NO CHANGE IN SECTION: " +
+                            #     driver.find_element_by_id("NR_SSS_SOC_NSEC_CLASS_SECTION$0").text)
+            if(driver.find_element_by_id("SOC_DETAIL$16")):
+                print("NEW SPOT OPEN")
     except:
         print("failed " + current_time)
         failed_count +=1
