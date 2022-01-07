@@ -76,17 +76,17 @@ def start_program():
             time.sleep(3)
 
 
-            id_box = driver.find_element_by_id("NR_SSS_SOC_NWRK_SUBJECT")
-            id_box.click()
-            time.sleep(2)
-            id_box.send_keys('comp') # Selects Comp Sci Major
-            id_box.send_keys(Keys.ENTER)
-            time.sleep(2)
-            driver.find_element_by_id("NR_SSS_SOC_NWRK_CHECK_BOX").click()
-            time.sleep(2)
-            driver.find_element_by_id("NR_SSS_SOC_NWRK_BASIC_SEARCH_PB").click()
-            time.sleep(2)
-            spot_existingClass()# Search If Spot Opens in Existing Class
+            #id_box = driver.find_element_by_id("NR_SSS_SOC_NWRK_SUBJECT")
+            #id_box.click()
+            #time.sleep(2)
+            #id_box.send_keys('comp') # Selects Comp Sci Major
+            #id_box.send_keys(Keys.ENTER)
+            #time.sleep(2)
+            #driver.find_element_by_id("NR_SSS_SOC_NWRK_CHECK_BOX").click()
+            #time.sleep(2)
+            #driver.find_element_by_id("NR_SSS_SOC_NWRK_BASIC_SEARCH_PB").click()
+            #time.sleep(2)
+            #spot_existingClass()# Search If Spot Opens in Existing Class
 
             driver.refresh()
             print(no_crash)
